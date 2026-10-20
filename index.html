@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self';" />
+  <title>溟月 · DeepSeek 鲸鱼娘桌宠</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="scene" aria-live="polite">
+    <div id="ambient" class="ambient" aria-hidden="true">
+      <span class="bubble b1"></span>
+      <span class="bubble b2"></span>
+      <span class="bubble b3"></span>
+      <span class="bubble b4"></span>
+    </div>
+
+    <section id="bubble" class="speech hidden" aria-label="溟月说的话">
+      <div class="speech-top">
+        <span class="status-dot"></span>
+        <span class="speaker">溟月</span>
+        <span id="mood" class="mood">在线</span>
+        <button id="bubble-close" class="bubble-close" title="收起" aria-label="收起气泡">×</button>
+      </div>
+      <p id="speech-text" class="speech-text"></p>
+      <div class="speech-tail"></div>
+      <div class="speech-tail dot"></div>
+    </section>
+
+    <div id="sleepy" class="sleepy hidden" aria-hidden="true">
+      <span>z</span><span>Z</span><span>z</span>
+    </div>
+
+    <div id="pet-stage" class="pet-stage">
+      <div id="pet-wrap" class="pet-wrap">
+        <div class="pet-shadow"></div>
+        <img id="pet" src="assets/pet.png" alt="DeepSeek 鲸鱼娘溟月，蓝发、鲸鳍、鲸尾，穿深蓝女仆裙" draggable="false" />
+      </div>
+    </div>
+
+    <nav id="dock" class="dock" aria-label="桌宠快捷操作">
+      <button class="dock-btn" data-quick="pat" title="摸摸头">
+        <span class="dock-emoji">♡</span>
+        <span class="dock-label">摸摸</span>
+      </button>
+      <button class="dock-btn" data-quick="feed" title="喂白饭">
+        <span class="dock-emoji">🍚</span>
+        <span class="dock-label">喂饭</span>
+      </button>
+      <button class="dock-btn" data-quick="talk" title="和溟月说话">
+        <span class="dock-emoji">…</span>
+        <span class="dock-label">说话</span>
+      </button>
+      <button class="dock-btn" data-quick="menu" title="更多">
+        <span class="dock-emoji">≡</span>
+        <span class="dock-label">菜单</span>
+      </button>
+    </nav>
+
+    <div id="menu" class="menu hidden" role="menu" aria-label="桌宠菜单">
+      <div class="menu-head">
+        <img src="assets/icon.png" alt="" class="menu-avatar" />
+        <div>
+          <strong>溟月</strong>
+          <span>DeepSeek 鲸鱼娘</span>
+        </div>
+      </div>
+      <button class="menu-item" data-action="pat"><span>♡</span>摸摸头</button>
+      <button class="menu-item" data-action="feed"><span>🍚</span>喂白饭</button>
+      <button class="menu-item" data-action="talk"><span>…</span>聊两句</button>
+      <button class="menu-item" data-action="about"><span>ⓘ</span>关于与署名</button>
+      <div class="menu-sep"></div>
+      <div class="menu-row">
+        <span>大小</span>
+        <div class="stepper">
+          <button data-action="smaller" title="变小">−</button>
+          <b id="scale-label">100%</b>
+          <button data-action="bigger" title="变大">＋</button>
+        </div>
+      </div>
+      <label class="menu-toggle">
+        <span>始终置顶</span>
+        <input id="toggle-top" type="checkbox" />
+        <i></i>
+      </label>
+      <label class="menu-toggle">
+        <span>桌宠音效</span>
+        <input id="toggle-sound" type="checkbox" />
+        <i></i>
+      </label>
+      <label class="menu-toggle">
+        <span>开机自动启动</span>
+        <input id="toggle-autostart" type="checkbox" />
+        <i></i>
+      </label>
+      <div class="menu-sep"></div>
+      <div class="menu-grid">
+        <button class="menu-item compact" data-action="return">回右下角</button>
+        <button class="menu-item compact" data-action="hide">藏起来</button>
+        <button class="menu-item compact danger" data-action="quit">退出桌宠</button>
+      </div>
+      <p class="menu-hint">拖动溟月可以换位置 · 右键再打开菜单</p>
+    </div>
+
+    <div id="about" class="about hidden" role="dialog" aria-modal="true" aria-labelledby="about-title">
+      <div class="about-card">
+        <button id="about-close" class="about-close" aria-label="关闭">×</button>
+        <div class="about-crest">
+          <img src="assets/icon.png" alt="" />
+        </div>
+        <p class="about-kicker">DEEPSEEK FAN PET</p>
+        <h1 id="about-title">溟月 · 鲸鱼娘桌宠</h1>
+        <p class="about-lead">“我是来陪你的，才不是为了那碗白饭。”</p>
+        <div class="about-body">
+          <p>角色原型为 <b>「溟月」</b>，由 <b>上善无形</b> 创作，以 <b>CC BY-NC-SA 4.0</b> 开放二创。女仆装造型源自 <b>ZipZipPipe</b> 等社区二创，Q版修复由 <b>QYQCAMIAO</b> 完成；本桌宠是非商业同人作品，沿用相同许可协议。</p>
+          <p>参考形象报道：<a href="https://www.tmtpost.com/8110298.html" data-external="https://www.tmtpost.com/8110298.html">钛媒体《DeepSeek里长出了个“鲸鱼娘”》</a>。DeepSeek 名称及相关商标归其权利人所有，本项目与 DeepSeek 官方无隶属关系。</p>
+          <p class="license-line">本衍生作品：CC BY-NC-SA 4.0 · 禁止商用 · 转载请注明作者与许可</p>
+        </div>
+        <div class="about-actions">
+          <button class="primary" data-action="close-about">继续陪溟月</button>
+          <button class="ghost" data-external="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans">查看许可</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+    <div id="fx" class="fx" aria-hidden="true"></div>
+  </div>
+
+  <script src="assets/alpha-mask.js"></script>
+  <script src="renderer.js"></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "deepseek-whale-pet",
+  "version": "1.0.0",
+  "description": "DeepSeek 鲸鱼娘「溟月」同人桌宠 · 非商业二创",
+  "main": "main.js",
+  "scripts": {
+    "start": "node scripts/start.js",
+    "art": "node scripts/process-chibi.js",
+    "smoke": "node scripts/smoke-test.js"
+  },
+  "keywords": [
+    "desktop-pet",
+    "deepseek",
+    "whale-girl",
+    "electron"
+  ],
+  "license": "SEE LICENSE IN LICENSE-ART.md",
+  "private": true,
+  "devDependencies": {
+    "electron": "^44.7.0",
+    "pngjs": "7.0.0"
+  }
+}
