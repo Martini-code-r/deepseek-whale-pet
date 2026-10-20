@@ -8,11 +8,24 @@
 
 ## 直接启动
 
-项目里已经带好 Electron 运行时，不需要安装环境。任选一种：
+本机这份完整目录已经带好 Electron 运行时，不需要安装环境。任选一种：
 
 1. 双击桌面上的 **「溟月桌宠」** 快捷方式；
 2. 或在项目目录双击 **`启动桌宠.vbs`**（无黑框，推荐）；
 3. 或双击 `launch.cmd`（会短暂出现命令行窗口）。
+
+> 如果你是从 GitHub **clone 或下载源码**，仓库里不包含体积很大的 `node_modules`。请先在本目录执行：
+>
+> ```powershell
+> npm.cmd install
+> ```
+>
+> 安装完 Electron 后，再双击 `启动桌宠.vbs`。如果 npm 下载 Electron 很慢，可以先设置镜像：
+>
+> ```powershell
+> $env:ELECTRON_MIRROR="https://npmmirror.com/mirrors/electron/"
+> npm.cmd install
+> ```
 
 > 如果移动了整个文件夹，桌面快捷方式会失效，重新对 `启动桌宠.vbs` 发送快捷方式即可。
 

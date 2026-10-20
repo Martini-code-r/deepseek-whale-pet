@@ -20,6 +20,7 @@ const root = path.resolve(__dirname, '..');
 const tokenFile = process.env.GITHUB_TOKEN_FILE || path.resolve(root, '..', 'github-token.txt');
 const repoName = process.env.REPO_NAME || 'deepseek-whale-pet';
 const isPrivate = process.env.REPO_PRIVATE === '1';
+const commitMessage = process.env.COMMIT_MESSAGE || 'feat: Q版 DeepSeek 鲸鱼娘溟月桌面宠物';
 const token = (() => {
   try {
     return fs.readFileSync(tokenFile, 'utf8').trim();
@@ -73,11 +74,6 @@ async function api(endpoint, options = {}) {
 
   if (repo) {
     console.log(`Repository already exists: ${repo.html_url}`);
-    if (repo.size > 0) {
-      console.error('The repository is not empty; refusing to overwrite its history.');
-      console.error('Set REPO_NAME to a new name, or empty the repository first.');
-      process.exit(3);
-    }
   } else {
     repo = await api('/user/repos', {
       method: 'POST',
@@ -102,6 +98,11 @@ async function api(endpoint, options = {}) {
     if (Array.isArray(commits) && commits.length) parentSha = commits[0].sha;
   } catch (err) {
     if (err.status !== 404 && err.status !== 409) throw err;
+  }
+  if (repo && parentSha && process.env.ALLOW_UPDATE !== '1') {
+    console.error('The repository already has commits; refusing to overwrite its history.');
+    console.error('Run with ALLOW_UPDATE=1 to add a fast-forward commit instead.');
+    process.exit(3);
   }
   if (!parentSha) {
     const seed = await api(`/repos/${owner}/${repoName}/contents/.init`, {
@@ -142,7 +143,7 @@ async function api(endpoint, options = {}) {
   const commit = await api(`/repos/${owner}/${repoName}/git/commits`, {
     method: 'POST',
     body: {
-      message: 'feat: Q版 DeepSeek 鲸鱼娘溟月桌面宠物',
+      message: commitMessage,
       tree: treeResult.sha,
       parents: parentSha ? [parentSha] : [],
       author: { name: owner, email: `${owner}@users.noreply.github.com` },
@@ -159,7 +160,7 @@ async function api(endpoint, options = {}) {
     if (err.status !== 422) throw err;
     await api(`/repos/${owner}/${repoName}/git/refs/heads/main`, {
       method: 'PATCH',
-      body: { sha: commit.sha, force: true }
+      body: { sha: commit.sha }
     });
   }
 
